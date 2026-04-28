@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class items extends Model
@@ -19,13 +20,13 @@ class items extends Model
     // Barang terikat pada satu kategori
     public function category(): BelongsTo
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(category::class);
     }
 
     // Barang memiliki banyak riwayat transaksi
     public function transactions(): HasMany
     {
-        return $this->hasMany(Transaction::class);
+        return $this->hasMany(transactions::class);
     }
 
     // Barang memiliki banyak riwayat peminjaman
