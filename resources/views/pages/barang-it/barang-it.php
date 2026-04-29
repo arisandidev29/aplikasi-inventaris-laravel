@@ -7,7 +7,7 @@ use Livewire\Component;
 use Livewire\WithPagination;
 
 new class extends Component {
- use WithPagination;
+    use WithPagination;
 
     public string $search     = '';
     public string $kategori   = '';
@@ -26,8 +26,14 @@ new class extends Component {
     public ?int   $category_id  = null;
 
     // Reset pagination saat search/filter berubah
-    public function updatingSearch(): void    { $this->resetPage(); }
-    public function updatingKategori(): void  { $this->resetPage(); }
+    public function updatingSearch(): void
+    {
+        $this->resetPage();
+    }
+    public function updatingKategori(): void
+    {
+        $this->resetPage();
+    }
 
     #[Computed]
     public function kategoris()
@@ -39,8 +45,16 @@ new class extends Component {
 
     public function openCreate(): void
     {
-        $this->reset(['editId','kode_barang','nama_barang','merk',
-                      'stok','kondisi','lokasi','deskripsi']);
+        $this->reset([
+            'editId',
+            'kode_barang',
+            'nama_barang',
+            'merk',
+            'stok',
+            'kondisi',
+            'lokasi',
+            'deskripsi'
+        ]);
         $this->category_id = category::where('name', $this->categoryName)->value('id');
         $this->isEditing   = false;
         $this->showModal   = true;
@@ -83,18 +97,30 @@ new class extends Component {
 
         if ($this->isEditing) {
             items::findOrFail($this->editId)->update($validated);
+            $this->dispatch('notify', msg: 'Barang berhasil diperbarui!', type: 'success');
         } else {
             items::create($validated);
+            $this->dispatch('notify', msg: 'Barang berhasil Edit!', type: 'success');
         }
 
         $this->showModal = false;
-        $this->reset(['editId','kode_barang','nama_barang','merk',
-                      'stok','kondisi','lokasi','deskripsi','category_id']);
+        $this->reset([
+            'editId',
+            'kode_barang',
+            'nama_barang',
+            'merk',
+            'stok',
+            'kondisi',
+            'lokasi',
+            'deskripsi',
+            'category_id'
+        ]);
     }
 
     public function delete(int $id): void
     {
         items::findOrFail($id)->delete(); // SoftDelete
+        $this->dispatch('notify', msg: 'Barang berhasil dihapus.', type: 'warning');
     }
 
     public function render()
@@ -103,11 +129,15 @@ new class extends Component {
 
         $items = items::with('category')
             ->where('category_id', $itCategoryId)
-            ->when($this->search, fn ($q) =>
+            ->when(
+                $this->search,
+                fn($q) =>
                 $q->where('nama_barang', 'like', "%{$this->search}%")
-                  ->orWhere('kode_barang', 'like', "%{$this->search}%")
+                    ->orWhere('kode_barang', 'like', "%{$this->search}%")
             )
-            ->when($this->kategori, fn ($q) =>
+            ->when(
+                $this->kategori,
+                fn($q) =>
                 $q->where('category_id', $this->kategori)
             )
             ->paginate(10);

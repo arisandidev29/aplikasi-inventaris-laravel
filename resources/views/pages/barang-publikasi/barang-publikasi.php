@@ -83,8 +83,11 @@ new class extends Component {
 
         if ($this->isEditing) {
             items::findOrFail($this->editId)->update($validated);
+            $this->dispatch('notify', msg: 'Barang berhasil diperbarui!', type: 'success');
+            
         } else {
             items::create($validated);
+            $this->dispatch('notify', msg: 'Barang baru berhasil ditambahkan!', type: 'success');
         }
 
         $this->showModal = false;
@@ -95,6 +98,7 @@ new class extends Component {
     public function delete(int $id): void
     {
         items::findOrFail($id)->delete(); // SoftDelete
+        $this->dispatch('notify', msg: 'Barang berhasil dihapus.', type: 'warning');
     }
 
     public function render()
