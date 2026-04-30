@@ -21,6 +21,9 @@ Route::middleware("auth")->group(function() {
     Route::livewire("/dashboard/barang-masuk","pages::barang-masuk")->name("barang-masuk");
     Route::livewire("/dashboard/barang-keluar","pages::barang-keluar")->name("barang-keluar");
     Route::livewire("/dashboard/peminjaman","pages::peminjaman")->name("peminjaman");
+
+    #kelolah user
+    Route::livewire("/dashboard/kelolah-pengguna","pages::kelolah-pengguna")->name("kelola-pengguna");
     
     
     #rekapitulasi
