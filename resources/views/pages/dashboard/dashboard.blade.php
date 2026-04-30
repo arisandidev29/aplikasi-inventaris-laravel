@@ -110,34 +110,7 @@
             </div>
         </div>
 
-        <!-- Breakdown Kategori (Visual Status) -->
-        <div class="p-8 bg-slate-900 border border-slate-800 rounded-[3rem] shadow-2xl">
-            <h3 class="text-lg font-black text-white italic uppercase tracking-tighter mb-8 text-center">Kapasitas Gudang</h3>
-            <div class="space-y-8">
-                <div class="space-y-3">
-                    <div class="flex justify-between text-xs font-black uppercase tracking-widest italic">
-                        <span class="text-slate-400">Rak Barang IT</span>
-                        <span class="text-white">65%</span>
-                    </div>
-                    <div class="w-full bg-slate-950 h-3 rounded-full overflow-hidden border border-slate-800 p-[2px]">
-                        <div class="bg-blue-600 h-full rounded-full shadow-[0_0_10px_rgba(37,99,235,0.5)]" style="width: 65%"></div>
-                    </div>
-                </div>
-                <div class="space-y-3">
-                    <div class="flex justify-between text-xs font-black uppercase tracking-widest italic">
-                        <span class="text-slate-400">Area Publikasi</span>
-                        <span class="text-white">88%</span>
-                    </div>
-                    <div class="w-full bg-slate-950 h-3 rounded-full overflow-hidden border border-slate-800 p-[2px]">
-                        <div class="bg-purple-600 h-full rounded-full shadow-[0_0_10px_rgba(147,51,234,0.5)]" style="width: 88%"></div>
-                    </div>
-                </div>
-            </div>
-
-            <button class="w-full mt-12 py-4 bg-slate-800 hover:bg-blue-600 text-white text-[10px] font-black uppercase tracking-[0.2em] rounded-2xl transition-all italic border border-slate-700">
-                Lihat Detail Denah
-            </button>
-        </div>
+        
     </div>
 
     <!-- Row 3: Recent Activity Table -->
